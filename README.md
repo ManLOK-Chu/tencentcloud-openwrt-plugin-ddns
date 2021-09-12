@@ -7,7 +7,7 @@
 | ---------- | ------------------------------------------------------------ |
 | 中文名称   | 腾讯云DDNS插件                                    |
 | 英文名称   | luci-app-tencentddns                                   |
-| 最新版本   | 0.1.0 (2020.09.17)                                           |
+| 最新版本   | 0.2.0 (2021.09.12)                                           |
 | 适用平台   | [Lean OpenWRT](https://github.com/coolsnowwolf/lede)         |
 | 适用产品   | [DNSPod](https://www.dnspod.cn/)|
 | GitHub项目 | [tencentcloud-openwrt-plugin-ddns](https://github.com/Tencent-Cloud-Plugins/tencentcloud-openwrt-plugin-ddns)                            |
@@ -36,15 +36,15 @@ ipk安装地址：http://openwrt-tencentddns-1301800460.cos.ap-guangzhou.myqclou
 ### 3.2.源码编译安装
 
 1. 安装好openWrt编译环境。
-2. 下载本github的zip文件。
-3. 编译 po2lmo (如果有po2lmo可跳过)
-   pushd package/tencentcloud-openwrt-plugin-ddns/tencentcloud_ddns/tools/po2lmo
-   make && sudo make install
-   popd
-4. 开始编译
-   make package/feeds/tencentcloud_ddns/compile V=s
-5. 把生成的ipk包上传到路由器，用opkg安装
-   opkg install luci-app-tencentddns_0.1.0-1_all.ipk
+2. cd进openwrt编译目录的package目录
+3. 把源代码克隆到本地
+4. 编译 po2lmo (如果有po2lmo可跳过)\
+   `pushd package/tencentcloud-openwrt-plugin-ddns/tencentcloud_ddns/tools/po2lmo
+   make && sudo make install popd`
+5. 返回上级目录，开始编译\
+   `make package/tencentcloud-openwrt-plugin-ddns/tencentcloud_ddns/compile V=s`
+6. 把生成的ipk包上传到路由器，用opkg安装
+   opkg install luci-app-tencentddns_0.2.0-1_all.ipk
 
 
 
@@ -62,6 +62,7 @@ ipk安装地址：http://openwrt-tencentddns-1301800460.cos.ap-guangzhou.myqclou
 
 ### 4.2.名词解释
 - **启用**：是否开启腾讯云DDNS
+- **更新IPv6地址**：如果勾选，仅更新IPv6地址
 - **清除所有同名记录**：如果一个域名有多个A解析记录，是否一并清除
 - **密钥ID**：DNSPod后台密钥管理中的ID，获取地址：[DNSPod密钥管理](https://console.dnspod.cn/account/token)
 - **密钥Token**：DNSPod后台密钥管理中的Token。获取地址：[DNSPod密钥管理](https://console.dnspod.cn/account/token)
@@ -81,11 +82,13 @@ ipk安装地址：http://openwrt-tencentddns-1301800460.cos.ap-guangzhou.myqclou
 
 ### 6.1 tencentcloud-openwrt-plugin-ddns v0.1.0
 - 支持在软路由提供DDNS服务
+### 6.2 tencentcloud-openwrt-plugin-ddns v0.2.0
+- 增加IPv6支持
 
 
 ## 7.注意事项
 
-> 暂无
+> 如果要更新IPv6地址，IP来源选择`lan`
 
 
 ## 8. 联系我们
