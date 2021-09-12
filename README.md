@@ -27,8 +27,7 @@
 
 ### 3.1.安装ipk包（推荐）
 
-登录openwrt路由器,进入系统→软件包页面，将下方软件包的地址放入从网络安装的输入框中，点击确认完成安装。
-ipk安装地址：http://openwrt-tencentddns-1301800460.cos.ap-guangzhou.myqcloud.com/luci-app-tencentddns_0.1.0-1_all.ipk
+x86_64平台的预编译安装包可以在[此处](https://github.com/SSSSSimon/tencentcloud-openwrt-plugin-ddns/releases/tag/v0.2.0)下载，登录openwrt路由器，进入系统→软件包页面，将ipk包上传至路由器并安装即可。
 ![](./images/ddns1.png)
 
 
