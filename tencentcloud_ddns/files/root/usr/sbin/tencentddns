@@ -236,9 +236,9 @@ if [ "Z$iface" == "Zinternet" -o "Z$iface" == "Z" ]; then
 	ip=$(intelnetip)
 else
 	if [ $update_ipv6 == 1 ]; then
-		ip=$(ubus call network.interface.$iface status | grep '"address"' | grep -oE '[0-z]{1,4}:[0-z]{1,4}:[0-z]{1,4}:[0-z]{1,4}::[1]' | head -1)
+		ip=$(ifstatus $iface | jsonfilter -e '@["ipv6-address"][0].address')
 	else
-		ip=$(ubus call network.interface.$iface status | grep '"address"' | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
+		ip=$(ifstatus $iface | jsonfilter -e '@["ipv4-address"][0].address')
 	fi
 fi
 
