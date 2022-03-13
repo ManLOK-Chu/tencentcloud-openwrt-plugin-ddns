@@ -23,10 +23,22 @@ email=e:option(Value,"key_token",translate("Key Token"),translate("Key Token Mea
 email.password = true
 
 iface=e:option(ListValue,"interface",translate("WAN-IP Source"),translate("Select the WAN-IP Source for TencentDDNS, like wan/internet"))
-iface:value("",translate("Select WAN-IP Source"))
+-- iface:value("",translate("Select WAN-IP Source"))
 iface:value("internet")
-iface:value("wan")
-iface:value("lan")
+-- iface:value("wan")
+-- iface:value("lan")
+cur = luci.model.uci.cursor()
+net = cur:get_all("network")
+for k, v in pairs(net) do
+        for k1, v1 in pairs(v) do
+                if v1 == "interface" then
+                        iface:value(k)
+                        if k == "WAN" or k == "wan" then
+                                iface.default = k
+                        end
+                end
+        end
+end
 
 iface.rmempty=false
 main=e:option(Value,"main_domain",translate("Main Domain"),translate("For example: test.github.com -> github.com"))
