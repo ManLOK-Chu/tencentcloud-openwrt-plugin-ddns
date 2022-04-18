@@ -236,9 +236,9 @@ if [ "Z$iface" == "Zinternet" -o "Z$iface" == "Z" ]; then
 	ip=$(intelnetip)
 else
 	if [ $update_ipv6 == 1 ]; then
-		ip=$(ifstatus $iface | jsonfilter -e '@["ipv6-address"][0].address')
+		ip=$(ip -6 addr show dev $iface |awk '/inet6/{print $2}' |awk -F'/' '{print $1}'|head -n1)
 	else
-		ip=$(ifstatus $iface | jsonfilter -e '@["ipv4-address"][0].address')
+		ip=$(ip -4 addr show dev $iface |awk '/inet/{print $2}' |awk -F'/' '{print $1}'|head -n1)
 	fi
 fi
 

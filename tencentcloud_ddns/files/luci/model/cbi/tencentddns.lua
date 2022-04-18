@@ -25,6 +25,7 @@ email.password = true
 iface=e:option(ListValue,"interface",translate("WAN-IP Source"),translate("Select the WAN-IP Source for TencentDDNS, like wan/internet"))
 -- iface:value("",translate("Select WAN-IP Source"))
 iface:value("internet")
+iface:value("pppoe-wan")
 -- iface:value("wan")
 -- iface:value("lan")
 cur = luci.model.uci.cursor()
